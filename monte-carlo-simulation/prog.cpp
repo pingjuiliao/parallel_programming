@@ -120,7 +120,7 @@ main( int argc, char *argv[ ] )
 
 			// find out if it hits the infinite plate:
 			float t = ( 0. - ycir ) / outy;
-            //  If t is less than 0., then the reflected beam went up instead of down. Continue on to the next trial in the for-loop.
+            // If t is less than 0., then the reflected beam went up instead of down. Continue on to the next trial in the for-loop.
             if ( t < 0. ) {
                 continue ;
             }
