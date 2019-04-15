@@ -126,7 +126,7 @@ main( int argc, char *argv[ ] )
             }
             //  Otherwise, this beam hit the infinite plate. (Case D) Increment the number of hits and continue on to the next trial in the for-loop.
 
-            numHits ++ ;
+            numHits ++ ; // numHits += 1; // numHits = numHits + 1 ; // ++ numHits;
 
 
 		}
@@ -136,11 +136,14 @@ main( int argc, char *argv[ ] )
 			maxPerformance = megaTrialsPerSecond;
 		currentProb = (float)numHits/(float)NUMTRIALS;
         // printf("%d\t%d\t%d\t%d\t\n", NUMT, NUMTRIALS, currentProb, megaTrialsPerSecond);
-        std::cout << NUMT << "\t" << NUMTRIALS << "\t" << currentProb << "\t" << megaTrialsPerSecond << std::endl ;
+        std::cout << NUMT << "\t" << NUMTRIALS << "\t" << currentProb << "\t" << megaTrialsPerSecond << std::endl ; // #include<iostream>
 	}
-    std::cout << std::endl ; 
+    std::cout << std::endl ;
+    // just this line important ->
     std::cout << NUMT << "\t" << NUMTRIALS << "\t" << currentProb << "\t" << maxPerformance << std::endl ;
-    printf("%d\t%d\t%lf\t%lf\n", NUMT, NUMTRIALS, currentProb, maxPerformance);    
+    // printf("%d\t%d\t%lf\t%lf\n", NUMT, NUMTRIALS, currentProb, maxPerformance); /// #Include<stdio.h>
+    
+
     return 0 ;
 }
 
