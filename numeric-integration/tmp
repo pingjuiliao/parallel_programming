@@ -1,0 +1,212 @@
+######################
+NUMT = 1
+#####################
+
+NUMNODES = 10
+Number of Threads == 1
+Number of Nodes == 10
+Peak Performance == 8.82846
+Volume == 29.0343
+
+NUMNODES = 20
+Number of Threads == 1
+Number of Nodes == 20
+Peak Performance == 8.20159
+Volume == 28.7654
+
+NUMNODES = 50
+Number of Threads == 1
+Number of Nodes == 50
+Peak Performance == 9.19882
+Volume == 28.6992
+
+NUMNODES = 100
+Number of Threads == 1
+Number of Nodes == 100
+Peak Performance == 9.82623
+Volume == 28.6904
+
+NUMNODES = 200
+Number of Threads == 1
+Number of Nodes == 200
+Peak Performance == 10.2696
+Volume == 28.6882
+
+NUMNODES = 500
+Number of Threads == 1
+Number of Nodes == 500
+Peak Performance == 10.2895
+Volume == 28.6874
+
+NUMNODES = 1000
+Number of Threads == 1
+Number of Nodes == 1000
+Peak Performance == 10.4078
+Volume == 28.6892
+
+NUMNODES = 2000
+Number of Threads == 1
+Number of Nodes == 2000
+Peak Performance == 10.3724
+Volume == 28.6769
+
+
+######################
+NUMT = 2
+#####################
+
+NUMNODES = 10
+Number of Threads == 2
+Number of Nodes == 10
+Peak Performance == 15.7604
+Volume == 29.0343
+
+NUMNODES = 20
+Number of Threads == 2
+Number of Nodes == 20
+Peak Performance == 18.2083
+Volume == 28.7654
+
+NUMNODES = 50
+Number of Threads == 2
+Number of Nodes == 50
+Peak Performance == 19.5149
+Volume == 28.6992
+
+NUMNODES = 100
+Number of Threads == 2
+Number of Nodes == 100
+Peak Performance == 20.8732
+Volume == 28.6904
+
+NUMNODES = 200
+Number of Threads == 2
+Number of Nodes == 200
+Peak Performance == 20.877
+Volume == 28.6882
+
+NUMNODES = 500
+Number of Threads == 2
+Number of Nodes == 500
+Peak Performance == 20.2907
+Volume == 28.6877
+
+NUMNODES = 1000
+Number of Threads == 2
+Number of Nodes == 1000
+Peak Performance == 20.6855
+Volume == 28.6869
+
+NUMNODES = 2000
+Number of Threads == 2
+Number of Nodes == 2000
+Peak Performance == 20.4751
+Volume == 28.6762
+
+
+######################
+NUMT = 4
+#####################
+
+NUMNODES = 10
+Number of Threads == 4
+Number of Nodes == 10
+Peak Performance == 20.2224
+Volume == 29.0343
+
+NUMNODES = 20
+Number of Threads == 4
+Number of Nodes == 20
+Peak Performance == 24.6639
+Volume == 28.7654
+
+NUMNODES = 50
+Number of Threads == 4
+Number of Nodes == 50
+Peak Performance == 30.2404
+Volume == 28.6992
+
+NUMNODES = 100
+Number of Threads == 4
+Number of Nodes == 100
+Peak Performance == 37.9649
+Volume == 28.6904
+
+NUMNODES = 200
+Number of Threads == 4
+Number of Nodes == 200
+Peak Performance == 31.7708
+Volume == 28.6882
+
+NUMNODES = 500
+Number of Threads == 4
+Number of Nodes == 500
+Peak Performance == 36.8573
+Volume == 28.6876
+
+NUMNODES = 1000
+Number of Threads == 4
+Number of Nodes == 1000
+Peak Performance == 36.8185
+Volume == 28.6876
+
+NUMNODES = 2000
+Number of Threads == 4
+Number of Nodes == 2000
+Peak Performance == 36.0926
+Volume == 28.6929
+
+
+######################
+NUMT = 8
+#####################
+
+NUMNODES = 10
+Number of Threads == 8
+Number of Nodes == 10
+Peak Performance == 27.4124
+Volume == 29.0343
+
+NUMNODES = 20
+Number of Threads == 8
+Number of Nodes == 20
+Peak Performance == 46.4037
+Volume == 28.7654
+
+NUMNODES = 50
+Number of Threads == 8
+Number of Nodes == 50
+Peak Performance == 46.9889
+Volume == 28.6992
+
+NUMNODES = 100
+Number of Threads == 8
+Number of Nodes == 100
+Peak Performance == 57.3033
+Volume == 28.6904
+
+NUMNODES = 200
+Number of Threads == 8
+Number of Nodes == 200
+Peak Performance == 55.8786
+Volume == 28.6882
+
+NUMNODES = 500
+Number of Threads == 8
+Number of Nodes == 500
+Peak Performance == 55.7161
+Volume == 28.6876
+
+NUMNODES = 1000
+Number of Threads == 8
+Number of Nodes == 1000
+Peak Performance == 55.7048
+Volume == 28.6875
+
+NUMNODES = 2000
+Number of Threads == 8
+Number of Nodes == 2000
+Peak Performance == 55.6
+Volume == 28.6889
+
+
