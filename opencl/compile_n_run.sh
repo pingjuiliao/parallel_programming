@@ -5,6 +5,7 @@ for s in 1000 10000 50000 100000 ; do
     echo "######################"
     echo NUMT = $s
     echo -e "#####################\n"
+    echo
     g++ -DARR_SIZE=$s -o simd_arraymult simd_arraymult.cpp simd.p4.o -lm -fopenmp
     g++  -DARR_SIZE=$s -o arraymult arraymult.cpp -lm -fopenmp
     g++  -DARR_SIZE=$s -o simd_reduction simd_reduction.cpp simd.p4.o -lm -fopenmp

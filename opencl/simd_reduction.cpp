@@ -65,7 +65,7 @@ main( int argc, char *argv[ ] )
 			maxPerformance = megaTrialsPerSecond;
 	
 
-        std::cout << "megaTrialsPerSecond : " << megaTrialsPerSecond << "\n" ;
+        //std::cout << "megaTrialsPerSecond : " << megaTrialsPerSecond << "\n" ;
     }
     std::cout << "maxPerformance : " << maxPerformance << "\n" ; 
 
