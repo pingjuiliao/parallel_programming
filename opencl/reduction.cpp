@@ -7,7 +7,7 @@
 using namespace std;
 
 #ifndef ARR_SIZE
-#define ARR_SIZE 214748
+#define ARR_SIZE 1000
 #endif
 
 #ifndef NUMTRIES
@@ -48,19 +48,20 @@ main(void) {
     }
 
     float maxPerformance = 0. ;
-
     for ( t = 0 ; t < NUMTRIES ; ++t ) {
 
         double time0 = omp_get_wtime() ;
+        float reduce = 0. ;
+
         for ( i = 0 ; i < ARR_SIZE ; ++i ) {
-            c[i] = a[i] * b[i];
+            reduce *= a[i] ;
         }
         double time1 = omp_get_wtime() ;
         double megaTrialsPerSecond = (double) ARR_SIZE / ( time1 - time0 ) / 1000000.;
         if ( megaTrialsPerSecond > maxPerformance ) {
             maxPerformance = megaTrialsPerSecond ;
         }
-        //cout << "megaTrialsPerSecond : " << megaTrialsPerSecond << endl;
+        // cout << "megaTrialsPerSecond : " << megaTrialsPerSecond << endl;
     }
 
     cout << "Max Performance : " << maxPerformance << endl ;
