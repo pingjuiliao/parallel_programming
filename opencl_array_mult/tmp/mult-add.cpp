@@ -11,23 +11,22 @@
 #endif
 #include <omp.h>
 
-#include "CL/cl.h"
-#include "CL/cl_platform.h"
+#include "cl.h"
+#include "cl_platform.h"
 
 
 #ifndef NMB
 #define	NMB			64
 #endif
 
-#define NUM_ELEMENTS		NMB*1024*1024
 
 #ifndef LOCAL_SIZE
-#define	LOCAL_SIZE		64
+#define	LOCAL_SIZE		32
 #endif
 
 #define	NUM_WORK_GROUPS		NUM_ELEMENTS/LOCAL_SIZE
 
-const char *			CL_FILE_NAME = { "first.cl" };
+const char *			CL_FILE_NAME = { "first2.cl" };
 const float			TOL = 0.0001f;
 
 void				Wait( cl_command_queue );
@@ -59,7 +58,7 @@ main( int argc, char *argv[ ] )
 	// get the platform id:
 
 	cl_platform_id platform;
-	status = clGetPlatformIDs( 2, &platform, NULL );
+	status = clGetPlatformIDs( 1, &platform, NULL );
 	if( status != CL_SUCCESS )
 		fprintf( stderr, "clGetPlatformIDs failed (2)\n" );
 	
@@ -75,12 +74,14 @@ main( int argc, char *argv[ ] )
 	float *hA = new float[ NUM_ELEMENTS ];
 	float *hB = new float[ NUM_ELEMENTS ];
 	float *hC = new float[ NUM_ELEMENTS ];
+	float *hD = new float[ NUM_ELEMENTS ];//0530
 
 	// fill the host memory buffers:
 
 	for( int i = 0; i < NUM_ELEMENTS; i++ )
 	{
 		hA[i] = hB[i] = (float) sqrt(  (double)i  );
+		hC[i] = (float)sqrt((double)i);
 	}
 
 	size_t dataSize = NUM_ELEMENTS * sizeof(float);
@@ -111,6 +112,10 @@ main( int argc, char *argv[ ] )
 	if( status != CL_SUCCESS )
 		fprintf( stderr, "clCreateBuffer failed (3)\n" );
 
+	cl_mem dD = clCreateBuffer( context, CL_MEM_WRITE_ONLY, dataSize, NULL, &status );
+	if( status != CL_SUCCESS )
+		fprintf( stderr, "clCreateBuffer failed (4)\n" );
+
 	// 6. enqueue the 2 commands to write the data from the host buffers to the device buffers:
 
 	status = clEnqueueWriteBuffer( cmdQueue, dA, CL_FALSE, 0, dataSize, hA, 0, NULL, NULL );
@@ -120,6 +125,10 @@ main( int argc, char *argv[ ] )
 	status = clEnqueueWriteBuffer( cmdQueue, dB, CL_FALSE, 0, dataSize, hB, 0, NULL, NULL );
 	if( status != CL_SUCCESS )
 		fprintf( stderr, "clEnqueueWriteBuffer failed (2)\n" );
+
+	status = clEnqueueWriteBuffer( cmdQueue, dC, CL_FALSE, 0, dataSize, hC, 0, NULL, NULL );
+	if( status != CL_SUCCESS )
+		fprintf( stderr, "clEnqueueWriteBuffer failed (3)\n" );
 
 	Wait( cmdQueue );
 
@@ -178,6 +187,10 @@ main( int argc, char *argv[ ] )
 	if( status != CL_SUCCESS )
 		fprintf( stderr, "clSetKernelArg failed (3)\n" );
 
+	status = clSetKernelArg( kernel, 3, sizeof(cl_mem), &dD );
+	if( status != CL_SUCCESS )
+		fprintf( stderr, "clSetKernelArg failed (4)\n" );
+
 
 	// 11. enqueue the kernel object for execution:
 
@@ -198,12 +211,14 @@ main( int argc, char *argv[ ] )
 
 	// 12. read the results buffer back from the device to the host:
 
-	status = clEnqueueReadBuffer( cmdQueue, dC, CL_TRUE, 0, dataSize, hC, 0, NULL, NULL );
+	status = clEnqueueReadBuffer( cmdQueue, dD, CL_TRUE, 0, dataSize, hD, 0, NULL, NULL );
 	if( status != CL_SUCCESS )
 			fprintf( stderr, "clEnqueueReadBuffer failed\n" );
 
-	// did it work?
+	Wait(cmdQueue);//0530
 
+	// did it work?
+/*
 	for( int i = 0; i < NUM_ELEMENTS; i++ )
 	{
 		float expected = hA[i] * hB[i];
@@ -215,9 +230,11 @@ main( int argc, char *argv[ ] )
 				//i, LookAtTheBits(hA[i]), LookAtTheBits(hB[i]), LookAtTheBits(hC[i]), LookAtTheBits(expected) );
 		}
 	}
-
+0530*/
+	
+	printf("Global Work Size\t Local Work Size \t NUM WORK GROUPS \t Performance \n");
 	fprintf( stderr, "%8d\t%4d\t%10d\t%10.3lf GigaMultsPerSecond\n",
-		NMB, LOCAL_SIZE, NUM_WORK_GROUPS, (double)NUM_ELEMENTS/(time1-time0)/1000000000. );
+		NUM_ELEMENTS, LOCAL_SIZE, NUM_WORK_GROUPS, (double)NUM_ELEMENTS/(time1-time0)/1000000000. );
 
 #ifdef WIN32
 	Sleep( 2000 );
@@ -232,10 +249,12 @@ main( int argc, char *argv[ ] )
 	clReleaseMemObject(     dA  );
 	clReleaseMemObject(     dB  );
 	clReleaseMemObject(     dC  );
+	clReleaseMemObject(     dD  );
 
 	delete [ ] hA;
 	delete [ ] hB;
 	delete [ ] hC;
+	delete [ ] hD;
 
 	return 0;
 }

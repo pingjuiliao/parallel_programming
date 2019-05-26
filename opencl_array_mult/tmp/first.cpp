@@ -59,7 +59,7 @@ main( int argc, char *argv[ ] )
 	// get the platform id:
 
 	cl_platform_id platform;
-	status = clGetPlatformIDs( 2, &platform, NULL );
+	status = clGetPlatformIDs( 1, &platform, NULL );
 	if( status != CL_SUCCESS )
 		fprintf( stderr, "clGetPlatformIDs failed (2)\n" );
 	
